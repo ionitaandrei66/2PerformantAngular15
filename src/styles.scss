@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  font-size: 23px;
+  font-family: 'Open Sans';
+  height: 100%;
+  width: 100%;
+}
+body{
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}

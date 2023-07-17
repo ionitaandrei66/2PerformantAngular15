@@ -1,0 +1,25 @@
+<main class="d-grid align-content-center justify-content-center mt-3">
+    <ng-container *ngIf="templateLogin; else loggedIn">
+        <div class="card p-5" [formGroup]="loginForm">
+            <div class="input-group mb-3">
+                <input type="email" formControlName="email" class="form-control" placeholder="Email" aria-label="Email">
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" formControlName="password" class="form-control" placeholder="password" aria-label="Password">
+            </div>
+            <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="login()">Login</button>
+        </div>
+    </ng-container>
+
+    <ng-template #loggedIn>
+        <div class="card p-5">
+            <div class="input-group mb-3">
+                Hello {{this.user?.name}}, my id is: {{this.user?.id}}
+            </div>
+            <div class="input-group mb-3">
+                Time: {{time}}
+            </div>
+            <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="logOut()">Logout</button>
+        </div>
+    </ng-template>
+</main>
