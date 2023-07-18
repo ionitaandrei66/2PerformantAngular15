@@ -31,7 +31,7 @@ export class ContainerComponent {
             this.auth.authMethod(email, password).pipe(take(1), catchError((err) => {
                 this.toastService.showNotification('Login failed!', 'error');
                 return err
-            })).subscribe((res: any) => {
+            })).subscribe((res: { user: User }) => {
                 if (res) {
                     this.user = res.user;
                     this.time = new Date();
