@@ -19,12 +19,11 @@ export class ContainerComponent {
 
     constructor(private fb: FormBuilder, public auth: AuthService,private toastService: ToastService) {
         this.loginForm = this.fb.group({
-            email: ['', [Validators.required, Validators.minLength(4)]],
+            email: ['', [Validators.required]],
             password: [
                 '',
                 [
                     Validators.required,
-                    Validators.pattern(/^(?=.*[A-Z])(?=.*\d).*$/),
                 ],
             ],
         });
@@ -54,12 +53,11 @@ export class ContainerComponent {
         this.time = undefined;
         this.templateLogin = true;
         this.loginForm = this.fb.group({
-            email: ['', [Validators.required, Validators.minLength(4)]],
+            email: ['', [Validators.required]],
             password: [
                 '',
                 [
                     Validators.required,
-                    Validators.pattern(/^(?=.*[A-Z])(?=.*\d).*$/),
                 ],
             ],
         });

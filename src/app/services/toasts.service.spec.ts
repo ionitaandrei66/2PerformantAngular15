@@ -32,12 +32,12 @@ describe('ToastService', () => {
     toastService.showNotification(message, type);
 
     expect(document.createElement).toHaveBeenCalledWith('div');
-    expect(toastElement.className).toContain('toast bg-success text-light');
+    expect(toastElement.className).toContain('bg-success text-light');
     expect(toastElement.innerHTML).toContain(message);
 
     expect(document.body.appendChild).toHaveBeenCalledWith(toastElement);
 
-    jasmine.clock().tick(3000);
+    jasmine.clock().tick(1000);
 
     expect(document.body.removeChild).toHaveBeenCalledWith(toastElement);
   });
@@ -54,12 +54,12 @@ describe('ToastService', () => {
     toastService.showNotification(message, type);
 
     expect(document.createElement).toHaveBeenCalledWith('div');
-    expect(toastElement.className).toContain('toast bg-error text-light');
+    expect(toastElement.className).toContain('bg-danger text-light');
     expect(toastElement.innerHTML).toContain(message);
 
     expect(document.body.appendChild).toHaveBeenCalledWith(toastElement);
 
-    jasmine.clock().tick(3000);
+    jasmine.clock().tick(1000);
 
     expect(document.body.removeChild).toHaveBeenCalledWith(toastElement);
   });

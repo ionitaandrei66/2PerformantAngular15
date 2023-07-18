@@ -1,11 +1,15 @@
 <main class="d-grid align-content-center justify-content-center mt-3">
     <ng-container *ngIf="templateLogin; else loggedIn">
-        <div class="card p-5" [formGroup]="loginForm">
+        <div class="card p-5 needs-validation"  [formGroup]="loginForm">
             <div class="input-group mb-3">
                 <input type="email" formControlName="email" class="form-control" placeholder="Email" aria-label="Email">
+                <div class="valid-feedback">Valid Username.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="input-group mb-3">
                 <input type="password" formControlName="password" class="form-control" placeholder="password" aria-label="Password">
+                <div class="valid-feedback">Valid password.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="login()">Login</button>
         </div>
