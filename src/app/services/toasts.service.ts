@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  showNotification(message: string, type: 'success' | 'error') {
+  public showNotification(message: string, type: 'success' | 'error') {
     const toastElement = document.createElement('div');
-    toastElement.className = `toast ${type === 'error' ? 'bg-danger' : 'bg-success'} text-light`; // Set different classes for error and success
+    toastElement.className = `toast ${type === 'error' ? 'bg-danger' : 'bg-success'} text-light`;
     toastElement.innerHTML = `
     <div class="toast-body">
       ${message}

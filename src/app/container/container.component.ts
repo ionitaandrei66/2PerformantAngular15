@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {catchError, take} from "rxjs";
-import {User} from "../interfaces/user.interface";
+import {catchError, map, take} from "rxjs";
+import {LoginResponse, User} from "../interfaces/user.interface";
 import {AuthService} from "../services/auth.service";
 import {ToastService} from "../services/toasts.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-container',
@@ -17,7 +18,7 @@ export class ContainerComponent {
     templateLogin: boolean = true;
 
 
-    constructor(private fb: FormBuilder, public auth: AuthService, private toastService: ToastService) {
+    constructor(private fb: FormBuilder,private toastService: ToastService, public auth: AuthService) {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required]],
             password: ['', [Validators.required]],
@@ -28,12 +29,13 @@ export class ContainerComponent {
         if (this.loginForm.valid) {
             const {email, password} = this.loginForm.value;
 
-            this.auth.authMethod(email, password).pipe(take(1), catchError((err) => {
+            this.auth.authMethod(email, password).pipe(take(1),catchError((err) => {
                 this.toastService.showNotification('Login failed!', 'error');
                 return err
-            })).subscribe((res: { user: User }) => {
-                if (res) {
-                    this.user = res.user;
+            })).subscribe((res) => {
+                const loginResponse = res as LoginResponse;
+                if (loginResponse.user) {
+                    this.user = loginResponse.user;
                     this.time = new Date();
                     this.templateLogin = false;
                     this.toastService.showNotification('Logged in!', 'success');

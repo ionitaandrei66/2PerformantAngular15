@@ -25,3 +25,7 @@ export interface UserInfo {
     state: string;
     typeofbusiness: string;
 }
+
+export interface LoginResponse {
+    user?: User;
+}
