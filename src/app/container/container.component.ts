@@ -24,7 +24,7 @@ export class ContainerComponent {
         });
     }
 
-    login() {
+    public login(): void {
         if (this.loginForm.valid) {
             const {email, password} = this.loginForm.value;
 
@@ -46,7 +46,7 @@ export class ContainerComponent {
         }
     }
 
-    logOut() {
+    public logOut(): void {
         this.user = undefined;
         this.time = undefined;
         this.templateLogin = true;
