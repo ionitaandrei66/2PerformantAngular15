@@ -14,10 +14,10 @@
     <ng-template #loggedIn>
         <div class="card p-5">
             <div class="input-group mb-3">
-                Hello {{this.user?.name}}, my id is: {{this.user?.id}}
+                Hello {{user?.name}}, my id is: {{user?.id}}
             </div>
             <div class="input-group mb-3">
-                Time: {{time}}
+                Time: {{time | date:'medium'}}
             </div>
             <button class="btn btn-outline-secondary my-2 my-sm-0" (click)="logOut()">Logout</button>
         </div>

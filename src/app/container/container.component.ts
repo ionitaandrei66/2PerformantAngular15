@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {take} from "rxjs";
 import {User} from "../interfaces/user.interface";
+import {AuthService} from "../services/auth.service";
+import {ToastService} from "../services/toasts.service";
 
 @Component({
     selector: 'app-container',
@@ -16,7 +17,7 @@ export class ContainerComponent {
     templateLogin: boolean = true;
 
 
-    constructor(private fb: FormBuilder, public http: HttpClient) {
+    constructor(private fb: FormBuilder, public auth: AuthService,private toastService: ToastService) {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.minLength(4)]],
             password: [
@@ -31,15 +32,19 @@ export class ContainerComponent {
 
     login() {
         if (this.loginForm.valid) {
-            this.http.post("http://localhost:3000/2performant/login", {
-                email: this.loginForm.controls['email'].value,
-                password: this.loginForm.controls['password'].value
-            }).pipe(take(1)).subscribe((res: any) => {
+            const { email, password } = this.loginForm.value;
+
+            this.auth.authMethod(email ,password).pipe(take(1)).subscribe((res: any) => {
                 if (res) {
                     this.user = res.user;
                     this.time = new Date();
                     this.templateLogin = false;
+                    this.toastService.showNotification('Operation succeeded!', 'success');
+                }else{
+                    this.toastService.showNotification('Operation failed!', 'error');
                 }
+            }, error => {
+                this.toastService.showNotification('Operation failed!', 'error');
             })
         }
     }
