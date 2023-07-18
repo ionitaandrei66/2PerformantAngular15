@@ -20,12 +20,7 @@ export class ContainerComponent {
     constructor(private fb: FormBuilder, public auth: AuthService,private toastService: ToastService) {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required]],
-            password: [
-                '',
-                [
-                    Validators.required,
-                ],
-            ],
+            password: ['', [Validators.required]],
         });
     }
 
