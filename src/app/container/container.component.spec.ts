@@ -75,7 +75,7 @@ describe('ContainerComponent', () => {
         expect(component.time).toBeDefined();
         expect(component.templateLogin).toBeFalse();
         expect(toastService.showNotification).toHaveBeenCalledWith(
-            'Operation succeeded!',
+            'Logged in!',
             'success'
         );
     });
@@ -93,7 +93,7 @@ describe('ContainerComponent', () => {
         expect(component.time).toBeUndefined();
         expect(component.templateLogin).toBeTrue();
         expect(toastService.showNotification).toHaveBeenCalledWith(
-            'Operation failed!',
+            'Login failed!',
             'error'
         );
     });
