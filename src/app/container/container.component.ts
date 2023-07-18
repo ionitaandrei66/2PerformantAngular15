@@ -33,12 +33,12 @@ export class ContainerComponent {
                     this.user = res.user;
                     this.time = new Date();
                     this.templateLogin = false;
-                    this.toastService.showNotification('Operation succeeded!', 'success');
+                    this.toastService.showNotification('Logged in!', 'success');
                 }else{
-                    this.toastService.showNotification('Operation failed!', 'error');
+                    this.toastService.showNotification('Login failed!', 'error');
                 }
             }, error => {
-                this.toastService.showNotification('Operation failed!', 'error');
+                this.toastService.showNotification('Login failed!', 'error');
             })
         }
     }
@@ -56,5 +56,6 @@ export class ContainerComponent {
                 ],
             ],
         });
+        this.toastService.showNotification('Logged out!', 'success');
     }
 }
